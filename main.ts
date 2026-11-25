@@ -113,6 +113,21 @@ function generateNewsImage(): Buffer {
         r = Math.floor(bgR * 0.5); g = Math.floor(bgG * 0.5); b = Math.floor(bgB * 0.5);
       }
 
+      // Region indicator dots (small colored dots for each news region)
+      const regionDots = [
+        { x: 50, y: 110, r: 231, g: 76, b: 60 },   // Americas - red
+        { x: 520, y: 110, r: 52, g: 152, b: 219 },  // Europe - blue
+        { x: 50, y: 530, r: 46, g: 204, b: 113 },   // Asia-Pacific - green
+        { x: 520, y: 530, r: 243, g: 156, b: 18 }   // Middle East & Africa - orange
+      ];
+      for (const dot of regionDots) {
+        const dx = x - dot.x;
+        const dy = y - dot.y;
+        if (dx * dx + dy * dy < 9) {
+          r = dot.r; g = dot.g; b = dot.b;
+        }
+      }
+
       rawData[idx] = r;
       rawData[idx + 1] = g;
       rawData[idx + 2] = b;
