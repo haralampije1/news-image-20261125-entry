@@ -101,6 +101,11 @@ function generateNewsImage(): Buffer {
         const pulse = Math.sin(x * 0.1) * 0.5 + 0.5;
         r = Math.floor(255 * pulse); g = 0; b = 0;
       }
+
+      // Date label background (bottom right)
+      if (y > 480 && x > 380) {
+        r = Math.floor(bgR * 0.5); g = Math.floor(bgG * 0.5); b = Math.floor(bgB * 0.5);
+      }
       
       rawData[idx] = r;
       rawData[idx + 1] = g;
