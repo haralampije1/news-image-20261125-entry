@@ -20,6 +20,11 @@ function generateNewsImage(): Buffer {
   const width = 512;
   const height = 512;
 
+  // Helper: clamp a value between min and max (inline for performance)
+  function clamp(val: number, min: number, max: number): number {
+    return val < min ? min : val > max ? max : val;
+  }
+
   // PNG signature
   const pngSig = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
 
